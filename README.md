@@ -381,14 +381,6 @@ systemctl reload nginx
 
 ---
 
-## Step 4: Test Backend in Browser or Postman
-
-Open your browser and navigate to:
-
-```text
-http://<EC2_PUBLIC_IP>/trip
-```
-<img width="1505" height="834" alt="Screenshot 2026-02-06 at 11 14 30 PM" src="https://github.com/user-attachments/assets/ff902d35-919f-4713-a4aa-1cb0f1d14000" />
 
 If you receive a valid response, 🎉 your backend reverse proxy is working!
 
@@ -398,8 +390,8 @@ If you receive a valid response, 🎉 your backend reverse proxy is working!
 
 This section shows how to run:
 
-- **Frontend** on: `https://learningtech.store`
-- **Backend API** on: `https://api.learningtech.store`
+- **Frontend** on: `https://5souls.site`
+- **Backend API** on: `https://api.%souls.site`
 
 ## Step 1: Point Domains to Your EC2 IP
 
@@ -412,9 +404,6 @@ In your domain DNS provider:
 | A    | api  | <EC2_PUBLIC_IP>       |
 
 Wait a few minutes for DNS to propagate.
-
----
-<img width="1134" height="390" alt="Screenshot 2026-02-07 at 7 23 43 PM" src="https://github.com/user-attachments/assets/ae2dffee-9d3f-4887-969e-1949e8d52912" />
 
 
 ## Step 2: Create Separate Nginx Server Blocks
@@ -446,7 +435,7 @@ server {
 # Backend - api.learningtech.store
 server {
     listen 80;
-    server_name api.learningtech.store;
+    server_name api.5souls.site;
 
     location / {
         proxy_pass http://<EC2_PUBLIC_IP>:3001;
@@ -469,24 +458,6 @@ nano /etc/nginx/sites-available/default
 nginx -t
 systemctl reload nginx
 ```
-
----
-
-## Step 4: Test in Browser
-
-- Frontend:  
-  ```text
-  http://learningtech.store
-  ```
-  <img width="608" height="525" alt="Screenshot 2026-02-07 at 11 28 59 PM" src="https://github.com/user-attachments/assets/1fb46f96-97ed-4304-bd1b-135f131bdc87" />
-
-- Backend API:  
-  ```text
-  http://api.learningtech.store
-  ```
-  <img width="577" height="505" alt="Screenshot 2026-02-07 at 11 29 08 PM" src="https://github.com/user-attachments/assets/86f5e6ed-9242-4b03-b37f-107ee084518b" />
-
-If both load correctly, 🎉 your domains are now routing properly!
 
 ---
 
@@ -524,7 +495,7 @@ Certbot will:
 
 ```nginx
 server {
-    server_name learningtech.store www.learningtech.store;
+    server_name 5souls.site www.5solus.site;
 
     location / {
         proxy_pass http://<EC2_PUBLIC_IP>:3000;
@@ -535,37 +506,11 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
-
-    listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/learningtech.store/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/learningtech.store/privkey.pem; # managed by Certbot
-    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 }
 
-server {
-    if ($host = www.learningtech.store) {
-        return 301 https://$host$request_uri;
-    } # managed by Certbot
 
-    if ($host = learningtech.store) {
-        return 301 https://$host$request_uri;
-    } # managed by Certbot
-
-    listen 80;
-    server_name learningtech.store www.learningtech.store;
-    return 404; # managed by Certbot
-}
 ```
 ---
-
-## Step 3: Verify DNS Records
-
-```bash
-dig +short learningtech.store
-dig +short www.learningtech.store
-```
-
 Ensure both point to your EC2 public IP.
 
 ---
@@ -578,17 +523,6 @@ sudo systemctl reload nginx
 ```
 
 ---
-
-## Step 5: Access Your Website Securely
-
-🌐 https://learningtech.store  
-🌐 https://www.learningtech.store
-
-<img width="1512" height="580" alt="Screenshot 2026-02-01 at 11 40 38 PM" src="https://github.com/user-attachments/assets/a67a1487-0c65-4c9c-9fca-d9cf3930cf54" />
-<img width="1512" height="770" alt="Screenshot 2026-02-01 at 11 40 48 PM" src="https://github.com/user-attachments/assets/17e59bd8-c54b-4e3c-9da0-58a92f121a80" />
-
-
-If your site loads with a 🔒 lock icon, your SSL setup is successful! 🎉
 
 ---
 
@@ -612,7 +546,7 @@ apt install certbot python3-certbot-nginx -y
 ## Step 2: Generate and Configure SSL Certificates
 
 ```bash
-sudo certbot --nginx -d api.learningtech.store
+sudo certbot --nginx -d api.5solus.site
 ```
 
 Certbot will:
@@ -626,7 +560,7 @@ Certbot will:
 
 ```nginx
 server {
-    server_name api.learningtech.store;
+    server_name api.5solus.site;
 
     location / {
         proxy_pass http://<EC2_PUBLIC_IP>:3001;
@@ -671,16 +605,6 @@ Ensure both point to your EC2 public IP.
 sudo nginx -t
 sudo systemctl reload nginx
 ```
-
----
-
-## Step 5: Access Your Backend API Securely
-
-🌐 https://api.learningtech.store
-
-<img width="1512" height="936" alt="Screenshot 2026-02-01 at 11 41 06 PM" src="https://github.com/user-attachments/assets/3f6ff1d3-c5e3-4713-9a3a-126ff14394f7" />
-
-If your backend api loads with a 🔒 lock icon, your SSL setup is successful! 🎉
 
 ---
 
@@ -807,11 +731,6 @@ This document records the issued SSL certificate used for securing the Travel Me
 
 ---
 
-🌐 https://lb.learningtech.store
-
-<img width="1512" height="890" alt="Screenshot 2026-02-01 at 11 41 20 PM" src="https://github.com/user-attachments/assets/48e44e34-4eac-41c6-9ec6-ebee1916d544" />
-
-
 ## Renewal
 
 - **Renewal Eligibility:** Eligible  
@@ -894,59 +813,6 @@ This document describes the Auto Scaling Group configuration used to scale the T
 
 ---
 
-🎉 **Your Travel Memory application is now fully scalable and highly available!**
-
-## Running Apps with PM2
-
-### Install PM2
-
-```bash
-sudo npm install -g pm2
-```
-
----
-
-### Backend with PM2
-
-```bash
-cd ~/TravelMemory/backend
-pm2 start index.js --name "travel-backend"
-pm2 startup
-pm2 save
-```
-
----
-
-### Frontend with PM2
-
-```bash
-cd ~/TravelMemory/frontend
-npm install
-npm run build
-sudo npm install -g serve
-pm2 start serve --name "travel-frontend" -- -s build -l 3000
-pm2 save
-```
-
----
-
-### Verify
-
-```bash
-pm2 list
-```
-
-Expected:
-
-```
-travel-backend
-travel-frontend
-```
-
----
-
-## Deployment Complete!
-
 Your **Travel Memory** application is now:
 
 - ✅ Secure (HTTPS)
@@ -956,7 +822,3 @@ Your **Travel Memory** application is now:
 
 ---
 
-## Author
-
-**Avinash Sain**  
-GitHub: https://github.com/Avinashsain
