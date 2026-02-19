@@ -391,7 +391,7 @@ If you receive a valid response, 🎉 your backend reverse proxy is working!
 This section shows how to run:
 
 - **Frontend** on: `https://5souls.site`
-- **Backend API** on: `https://api.%souls.site`
+- **Backend API** on: `https://api.5souls.site`
 
 ## Step 1: Point Domains to Your EC2 IP
 
@@ -417,10 +417,10 @@ nano /etc/nginx/sites-available/default
 Paste the following configuration:
 
 ```nginx
-# Frontend - learningtech.store
+
 server {
     listen 80;
-    server_name learningtech.store www.learningtech.store;
+    server_name 5solus.site www.5souls.site;
 
     location / {
         proxy_pass http://<EC2_PUBLIC_IP>:3000;
@@ -432,7 +432,6 @@ server {
     }
 }
 
-# Backend - api.learningtech.store
 server {
     listen 80;
     server_name api.5souls.site;
@@ -481,7 +480,7 @@ apt install certbot python3-certbot-nginx -y
 ## Step 2: Generate and Configure SSL Certificates
 
 ```bash
-sudo certbot --nginx -d learningtech.store -d www.learningtech.store
+sudo certbot --nginx -d 
 ```
 
 Certbot will:
@@ -723,11 +722,6 @@ This document records the issued SSL certificate used for securing the Travel Me
 
 ---
 
-## 🌐 Domain Secured
-
-| Domain               | Status   |
-|----------------------|----------|
-| lb.learningtech.store | Success  |
 
 ---
 
@@ -742,7 +736,7 @@ This document records the issued SSL certificate used for securing the Travel Me
 
 - **Type:** DNS (CNAME)
 - **Record Name:**  
-  `_da979cbccb069db6bbf69dbaf1308772.lb.learningtech.store`
+  `_da979cbccb069db6bbf69dbaf1308772.lb.5solus.site`
 
 ---
 
@@ -821,4 +815,5 @@ Your **Travel Memory** application is now:
 - ✅ Production-ready
 
 ---
+
 
