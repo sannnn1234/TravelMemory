@@ -716,7 +716,6 @@ This document records the issued SSL certificate used for securing the Travel Me
 
 - **Type:** Amazon Issued  
 - **Region:** Asia Pacific (Mumbai)  
-- **Account:** AvinashSain (233245302554)  
 - **Status:** ✅ Issued  
 - **In Use:** Yes  
 
@@ -767,8 +766,6 @@ This document describes the Auto Scaling Group configuration used to scale the T
 - **Region:**  
   Asia Pacific (Mumbai)
 
-- **Account:**  
-  AvinashSain (233245302554)
 
 - **Launch Template Used:**  
   `travel-memory-frontend-template`
@@ -815,5 +812,6 @@ Your **Travel Memory** application is now:
 - ✅ Production-ready
 
 ---
+
 
 
