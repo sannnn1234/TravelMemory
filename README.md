@@ -93,7 +93,6 @@ Your backend should now be running on:
 http://<EC2_PUBLIC_IP>:3001
 
 ```
-<img width="748" height="209" alt="Screenshot 2026-02-01 at 9 33 54 PM" src="https://github.com/user-attachments/assets/ad2f1765-e10b-4e9d-ac42-757fee41a0e8" />
 
 
 # Connecting the Application to MongoDB Atlas
@@ -812,6 +811,7 @@ Your **Travel Memory** application is now:
 - ✅ Production-ready
 
 ---
+
 
 
 
