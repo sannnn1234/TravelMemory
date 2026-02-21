@@ -118,7 +118,7 @@ This guide explains how to set up MongoDB Atlas and connect it to your applicati
 
 ### 3. Create a Cluster
 - Click **Create Cluster**.
-- Name the cluster: `herocluster1`
+- Name the cluster: `herocluster`
 - Select the **M0 Free Plan**.
 - Click **Create Deployment** to deploy the cluster.
 
@@ -247,8 +247,6 @@ Your frontend should now be running on:
 http://<EC2_PUBLIC_IP>:3000
 ```
 <img width="857" height="347" alt="Screenshot 2026-02-01 at 9 33 48 PM" src="https://github.com/user-attachments/assets/196037ba-6861-4e07-afac-b774803df6f8" />
-
-<img width="607" height="370" alt="Screenshot 2026-02-01 at 9 36 55 PM" src="https://github.com/user-attachments/assets/2cdad023-6c3e-4d8c-8f53-51e8bc6867bf" />
 
 ---
 
@@ -811,6 +809,7 @@ Your **Travel Memory** application is now:
 - ✅ Production-ready
 
 ---
+
 
 
 
